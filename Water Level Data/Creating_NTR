@@ -1,0 +1,21 @@
+%% Load The data
+clear
+clc
+close all
+
+data = load('Water_Level_Time_Series_1901_to_2021.mat');
+
+% 2. Detrend
+Data=data.Data;
+
+plot(Data(:,1),Data(:,2))
+hold on
+% detrending Using moving annual Mean
+
+A=movmean(Data(:,2),720,"omitnan");
+
+
+WL_Detrended(:,2)=Data(:,2)-A;
+WL_Detrended(:,1)=Data(:,1);
+
+plot(WL_Detrended(:,1),WL_Detrended(:,2))
