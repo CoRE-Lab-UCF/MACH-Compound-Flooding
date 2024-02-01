@@ -7,7 +7,7 @@ load('C:\Users\pr109704\OneDrive - Knights - University of Central Florida\Analy
 L=18; %Selected accumulation
 %% 
 
-distance = km2deg(350); % in degrees 300 km 
+distance = km2deg(350); % in degrees
 Tropical_Cyclones_Con_RF = struct;
 ET_Cyclones_Con_RF = struct;
 count_ETC =0;
