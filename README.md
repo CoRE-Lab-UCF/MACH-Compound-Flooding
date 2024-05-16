@@ -13,12 +13,12 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 
 ### 1. Bias Correction
 - **`Bias_Correction.m`**
-  - **Description**: This script applies bias correction to rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average values derived from the Analysis of Record for Calibration (AORC) data.
-*Input: 
+  - **Description**: This script applies bias correction to rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average values derived from the Analysis of Record for Calibration (AORC) data.-
+-*Input: 
 Pr_Measured.mat:- [date-time, hourly precepitation]
 Pr_AORC.mat:- [date-time, hourly precepitation]
 output: 
-Bias Corrected MS at “location”_With_AORC_of_GC.mat:- [date-time, hourly precepitation]*
+Bias Corrected MS at “location”_With_AORC_of_GC.mat:- [date-time, hourly precepitation]*-
 
 
 ### 2. Data Checking
