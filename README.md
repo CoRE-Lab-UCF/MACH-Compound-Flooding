@@ -2,6 +2,11 @@
 
 This directory contains MATLAB scripts used for the analysis of compound flooding events in coastal regions, focusing on the distinct contributions from tropical cyclones (TCs) and non-tropical cyclones (non-TCs). The methodology and results are detailed in the paper "[A multivariate statistical framework for mixed populations in compound flood analysis](https://egusphere.copernicus.org/preprints/2024/egusphere-2024-1122)."
 
+<br>
+
+>Maduwantha, P., Wahl, T., Santamaria-Aguilar, S., Jane, R. A., Booth, J. F., Kim, H., and Villarini, G.: A multivariate statistical framework for mixed populations in compound flood analysis, EGUsphere [preprint], https://doi.org/10.5194/egusphere-2024-1122, 2024.
+
+<br>
 
 ## Overview of Scripts
 
