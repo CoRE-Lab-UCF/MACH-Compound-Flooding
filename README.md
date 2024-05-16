@@ -66,7 +66,7 @@ This directory contains MATLAB scripts used for the analysis of compound floodin
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## References
 
