@@ -7,15 +7,15 @@ This directory contains MATLAB scripts used for the analysis of compound floodin
 
 ### 1. Bias Correction
 - **`Bias_Correction.m`**
-  - **Description**: This script applies bias correction to rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average values derived from the Analysis of Record for Calibration (AORC) data. It ensures that local rainfall measurements are representative of the entire catchment area, which is crucial for accurate flood risk analysis.
+  - **Description**: This script applies bias correction to rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average values derived from the Analysis of Record for Calibration (AORC) data. 
 
 ### 2. Data Checking
 - **`Checking_TC_and_ET_cylcone_tracks.m`**
-  - **Description**: This script validates the tracks of tropical cyclones (TCs) and extratropical cyclones (ETCs) used in the study. It ensures that the storm tracks are accurate, which is essential for reliable simulations and analyses of storm impacts on flooding.
+  - **Description**: This script validates the tracks of tropical cyclones (TCs) and extratropical cyclones (ETCs) used in the study. 
 
 ### 3. Data Accumulation
 - **`Creating_Accumulated_RF.m`**
-  - **Description**: This script generates accumulated rainfall data over specified time intervals. It processes rainfall data to create cumulative totals, which are then used to analyze rainfall patterns during and after storm events. This information is vital for understanding the temporal distribution of rainfall during extreme weather events.
+  - **Description**: This script generates accumulated rainfall data over specified time intervals. It processes rainfall data to create cumulative totals, which are then used to analyze rainfall patterns during and after storm events. 
 
 ### 4. Isoline Creation
 - **`Creating_Isolines_From_Two_Populations.m`**
