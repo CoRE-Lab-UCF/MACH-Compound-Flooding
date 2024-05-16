@@ -23,9 +23,18 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 - `Bias Corrected MS at {location}_With_AORC_of_GC.mat`:- [date-time, hourly precepitation]
 
 
-### 2. Data Checking
-- **`Checking_TC_and_ET_cylcone_tracks.m`**
-  - **Description**: This script validates the tracks of tropical cyclones (TCs) and extratropical cyclones (ETCs) used in the study. 
+### 2. Calculating accumulated rainfall 
+- **`Creating_Accumulated_RF.m`**
+  - **Description**: The script calculates the accumulated rainfall from 1 to 48 hours suing the hourly rainfall data.
+    
+**Input**: 
+- `Bias Corrected MS at “location”_With_AORC_of_GC.mat`:- [date-time, hourly precipitation]
+
+**output**:  
+- `Hourly_accumulation_Bias_Corrected_RF_data_”location”.mat`:- [date-time, hourly accumulated Rf (nx48)]
+
+
+
 
 ### 3. Data Accumulation
 - **`Creating_Accumulated_RF.m`**
