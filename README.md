@@ -35,6 +35,10 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 
 
 
+
+
+
+
 ### 3. 	Defining peak over threshold extreme events
 - **`Scripts/Creating_POT_Extremes_NTR.m`**
   - **Description**: The script uses the Peak over threshold (POT) approach to define events over thresholds for non-tidal residuals (NTR).
@@ -111,10 +115,8 @@ Functions: ut_solv, ut_reconstr are needed and should be downloaded through U-ti
 ## 6. Fitting distributions
   - **Description**: The two stratified conditional samples are fitted in to different parametric distributions to check the most appropriate distribution. The selection of the distribution is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). Following codes and functions will calculate the confidence interval and will fit the selected distributions to the respective samples.
 - **`Scripts/Fitting_Ditributions.m`**
-- `Scripts/DKW_conf_int.m`
-- `Scripts/GPD_EST.m`
-- `Scripts/Gamma_EST.m`
-- `Scripts/Logistic_EST.m`
+- **`Scripts/DKW_conf_int.m`**
+
 
 ## 7. Fitting Copulas
   - **Description**: The two stratified conditional samples are fitted in to different Copula families to check the most appropriate copula family. This is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). 
@@ -124,6 +126,7 @@ Functions: ut_solv, ut_reconstr are needed and should be downloaded through U-ti
 1.	Calculate the annual exceedance probabilities for all the selected combinations of NTR and RF in the parametric space.
 2.	Generate N number of realizations from the fitted copulas.
 Here the following functions (modified from “Multihazard R package” (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md) are used for the calculations separately for tropical cyclones and non-tropical cyclones. 
+
 For Tropical Cyclone (TC) events:
 - **`Scripts/ Copula_TC_BC. R`**
 
@@ -191,16 +194,16 @@ For non-Tropical Cyclone events:
 - **`Scripts/Creating_Isolines_From_Two_Populations.m`**
 
 **Input**:
-- `RP : character array of the return periods of interest {'5','10','20','50','100'}
-- `Rp: numeric array of return periods of interest [5 10 20 50 100]
-- `TC :RP_TC.csv
-- `ETC : RP_ETC.csv
-- `TC_ext_CON_ntr_yrs : TC_events_conditioning_POT_NTR.mat
-- `TC_ext_CON_RF_yrs : TC_events_conditioning_POT_RF.mat
-- `Non_TC_ext_CON_ntr_yrs :ETC_events_conditioning_POT_NTR.mat
-- `Non_TC_ext_CON_RF_yrs : ETC_events_conditioning_POT_RF.mat
-- `COP_sample_TC : TC_Cop_Sample.csv
-- `COP_sample_ETC : ETC_Cop_Sample.csv
+- `RP` : character array of the return periods of interest {'5','10','20','50','100'}
+- `Rp`: numeric array of return periods of interest [5 10 20 50 100]
+- `TC` :RP_TC.csv
+- `ETC` : RP_ETC.csv
+- `TC_ext_CON_ntr_yrs` : TC_events_conditioning_POT_NTR.mat
+- `TC_ext_CON_RF_yrs` : TC_events_conditioning_POT_RF.mat
+- `Non_TC_ext_CON_ntr_yrs` :ETC_events_conditioning_POT_NTR.mat
+- `Non_TC_ext_CON_RF_yrs` : ETC_events_conditioning_POT_RF.mat
+- `COP_sample_TC` : TC_Cop_Sample.csv
+- `COP_sample_ETC` : ETC_Cop_Sample.csv
 
 Following variables are only for plotting.
 - `c_map` : [ linspace(0.8,1,512)', linspace(0,0.9,512)', linspace(0,0.2,512)']; % Colour Map
