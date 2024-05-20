@@ -86,7 +86,7 @@ Functions: ut_solv, ut_reconstr are needed and should be downloaded through U-ti
 - `Maximum_NTR_events_for_each_POT_RF_for_”Selected_accumulation_time”_RF_acc.mat`:-structure [Time_NTR.Max_NTR.Time_RF.POT_RF]
 
 ## 5. Stratification
-  - **Description**: The two conditional samples are stratified in to two sets as: 1. The events caused by Tropical cyclones 2. The events that were not caused by tropical cyclones. The Hurdat 2  data set is used to identify the events induced by tropical cylcones.
+  - **Description**: The two conditional samples are stratified into two sets as: 1. The events caused by Tropical cyclones 2. The events that were not caused by tropical cyclones. The Hurdat 2  data set is used to identify the events induced by tropical cylcones.
     
 5.1 Conditioned on NTR
 - **`Scripts/Stratification_Con_NTR.m`**
@@ -111,27 +111,27 @@ Functions: ut_solv, ut_reconstr are needed and should be downloaded through U-ti
 - `ETC_events_conditioning_POT_RF.mat`:- structure[event.[Time_NTR,NTR,Time_RF,RF]
 
 ## 6. Fitting distributions
-  - **Description**: The two stratified conditional samples are fitted in to different parametric distributions to check the most appropriate distribution. The selection of the distribution is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). Following codes and functions will calculate the confidence interval and will fit the selected distributions to the respective samples.
+  - **Description**: The two stratified conditional samples are fitted into different parametric distributions to check the most appropriate distribution. The selection of the distribution is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). The following codes and functions will calculate the confidence interval and will fit the selected distributions to the respective samples.
 - **`Scripts/Fitting_Ditributions.m`**
 - **`Scripts/DKW_conf_int.m`**
 
 
 ## 7. Fitting Copulas
-  - **Description**: The two stratified conditional samples are fitted in to different Copula families to check the most appropriate copula family. This is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). 
+  - **Description**: The two stratified conditional samples are fitted into different Copula families to check the most appropriate copula family. This is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). 
 
 ## 8. Bivariate analysis and estimating Joint probability distributions
   - **Description**: The two stratified conditional samples are used to:
 1.	Calculate the annual exceedance probabilities for all the selected combinations of NTR and RF in the parametric space.
 2.	Generate N number of realizations from the fitted copulas.
-Here the following functions (modified from “Multihazard R package” (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md) are used for the calculations separately for tropical cyclones and non-tropical cyclones. 
+Here the following functions (modified from “Multihazard R package” (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md) are used for the calculations separately for the samples of tropical cyclones and non-tropical cyclones. 
 
 For Tropical Cyclone (TC) events:
 - **`Scripts/ Copula_TC_BC. R`**
 
 **Input**:
 - `Data`:Hourly time series of NTR and RF [NTR, RF] , 
-- `Data_Con1`:TC POT events conduiting NTR for last 30 years, 
-- `Data_Con2`: TC POT events conduiting NTR for last 30 years, 
+- `Data_Con1`:TC POT events conditioning NTR for the last 30 years, 
+- `Data_Con2`: TC POT events conditioning NTR for the last 30 years, 
 - `Thres1` :Threshold for NTR, 
 - `Thres2` :Threshold for RF, 
 - `Copula_Family1`: Character array of selected copula _Family_NTR,
@@ -148,8 +148,8 @@ For Tropical Cyclone (TC) events:
 - `GPD_con2`:Selected GPD_RF,
 - `Data_Con1_M`:TC POT sample Conditioning_NTR [POT_NTR max_RF],
 - `Data_Con2_M:` TC POT sample Conditioning_RF[Max_NTR POT RF],
-- `EL_con1`:Average inter arrival time of TC threshold exceedances conditioning  NTR,
-- `EL_con2`: Average inter arrival time of TC threshold exceedances conditioning  RF,
+- `EL_con1`:Average inter-arrival time of TC threshold exceedances conditioning  NTR,
+- `EL_con2`: Average inter-arrival time of TC threshold exceedances conditioning  RF,
 
 **output**: 
 - `RP_TC.csv` : CSV file containing calculated return periods for all the selected combinations of NTR and RF in the parametric space based on TC samples. [NTR, RF, return period cond. NTR, return period cond. RF]
@@ -160,8 +160,8 @@ For non-Tropical Cyclone events:
 
 **Input**:
 - `Data`:Hourly time series of NTR and RF [NTR, RF] , 
-- `Data_Con1`:non-TC POT events conduiting NTR for last 30 years[POT_NTR max_RF],
-- `Data_Con2`: non-TC POT events conduiting NTR for last 30 years[Max_NTR POT RF],
+- `Data_Con1`:non-TC POT events conditioning NTR for the last 30 years[POT_NTR max_RF],
+- `Data_Con2`: non-TC POT events conditioning NTR for the last 30 years[Max_NTR POT RF],
 - `Thres1` :Threshold for NTR, 
 - `Thres2` :Threshold for RF, 
 - `Copula_Family1`: Character array of selected copula _Family_NTR,
@@ -178,14 +178,14 @@ For non-Tropical Cyclone events:
 - `GPD_con2`:Selected GPD_RF,
 - `Data_Con1_M`:non-TC POT sample Conditioning_NTR [POT_NTR max_RF],
 - `Data_Con2_M`: non-TC POT sample Conditioning_RF [Max_NTR POT RF],
-- `EL_con1`:Average inter arrival time of non-TC threshold exceedances conditioning  NTR,
-- `EL_con2`: Average inter arrival time of non-TC threshold exceedances conditioning  RF,
+- `EL_con1`:Average inter-arrival time of non-TC threshold exceedances conditioning  NTR,
+- `EL_con2`: Average inter-arrival time of non-TC threshold exceedances conditioning  RF,
 
 **output**: 
 - `RP_ETC.csv` : CSV file containing calculated return periods for all the selected combinations of NTR and RF in the parametric space based on non-TC samples. [NTR, RF, return period cond. NTR, return period cond. RF]
 - `ETC_Cop_Sample.csv`: CSV file containing N number of realizations based on the probability distribution. Of non-TC samples [NTR, RF]
 
-## 9. Combining popuations
+## 9. Combining populations
   - **Description**: The separately estimated return periods (annual exceedance probabilities) of TC samples and non-TC samples are combined:
 1.	Selecting the maximum annual exceedance probability from two conditioned samples of each population
 2.	Calculating total annual exceedance probability from both populations.
@@ -203,14 +203,14 @@ For non-Tropical Cyclone events:
 - `COP_sample_TC` : TC_Cop_Sample.csv
 - `COP_sample_ETC` : ETC_Cop_Sample.csv
 
-Following variables are only for plotting.
+The following variables are only relevant for plotting.
 - `c_map` : [ linspace(0.8,1,512)', linspace(0,0.9,512)', linspace(0,0.2,512)']; % Colour Map
 - `F_Size` :15; % font size of the figures
 - `Con_NTR_LW` : 1; % Lower limit of the NTR axis
 - `Con_NTR_M_Size` : 6; % maximum of the NTR axis
 - `Con_RF_LW` : 1;% Lowe limit of the RF axis
 - `Con_RF_M_Size` : 4;% maximum of the RF axis
-- `width` : 20; % width of figrues
+- `width` : 20; % width of figures
 - `height` : 20; % height of figures
 - `resolution` : 1000; % Number of grid cells in each direction of discretizing
 - `x0`:0.2;
