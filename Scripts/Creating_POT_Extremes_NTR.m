@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
 %
-%   This Script creates POT NTR events using Water level data
+%   This Script creates POT NTR events using Water-level data
 %   
 %   IMPORTANT:  The paths included in the script are according to the
 %   author's directory. Please change them accordingly
@@ -34,7 +34,7 @@ WL_Detrended(:,1)=Data(:,1);
 
 plot(WL_Detrended(:,1),WL_Detrended(:,2))
 
-%% remmoving the data chuncks where no sufficiant data are available to calculate moving average
+%% removing the data chunks where no sufficient data are available to calculate the moving average
 WL_Detrended_P =WL_Detrended(:,2);
 % Process1
 for i = 1:(length(WL_Detrended(:,2))-720)
