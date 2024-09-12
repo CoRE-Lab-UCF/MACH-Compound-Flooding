@@ -119,8 +119,7 @@ Functions: ut_solv, ut_reconstr are needed and should be downloaded through U-ti
 
 ## 6. Fitting distributions
 
-**Description**: The two stratified conditional samples are fitted into different parametric distributions to check the most appropriate distribution. The selection of the distribution is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). The following codes and functions will calculate the confidence interval and will fit the selected distributions to the respective samples.
-- **`Scripts/Fitting_Ditributions.m`**
+**Description**: The two stratified conditional samples are fitted into different parametric distributions to check the most appropriate distribution. The selection of the distribution is done based on the AIC and the “Multihazard R package” was used (https://rdrr.io/github/rjaneUCF/MultiHazard/f/README.md). The following codes and functions were used to calculate the confidence interval and will fit the selected distributions to the respective samples.
 - **`Scripts/DKW_conf_int.m`**
 
 
