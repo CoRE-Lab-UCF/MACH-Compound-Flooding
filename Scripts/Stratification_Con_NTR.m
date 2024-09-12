@@ -1,7 +1,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
-%   This script stratifies the extreme events sample in to TC events and
+%   This script stratifies the extreme events sample into TC events and
 %   non-TC events when conditioning on NTR
 %
 %   IMPORTANT:  The paths included in the script are according to the
@@ -27,7 +27,7 @@ distance = km2deg(350); % in degrees 350 km
 Tropical_Cyclones = struct;
 ET_Cyclones = struct;
 
-%% One event will be manually transfered in to the TC List due to its closeness to the search radius (date: 2009/09/19)
+%% One event will be manually transferred into the TC List due to its closeness to the search radius (date: 2009/09/19)
 
 for i = 1:48
     X=Maximum_RF_events(1).Accumulation;
