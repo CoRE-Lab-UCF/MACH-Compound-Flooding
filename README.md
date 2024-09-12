@@ -1,6 +1,6 @@
-# A multivariate statistical framework for mixed populations in compound flood analysis
+# A multivariate statistical framework for mixed storm types in compound flood analysis
 
-This directory contains MATLAB and R scripts used for estimating the joint probabilities in coastal regions, focusing on the mixed populations (tropical cyclones (TCs) and non-tropical cyclones (non-TCs)). The methodology and results are detailed in the paper "[A multivariate statistical framework for mixed populations in compound flood analysis](https://egusphere.copernicus.org/preprints/2024/egusphere-2024-1122)."
+This directory contains MATLAB and R scripts used for estimating the joint probabilities in coastal regions, focusing on the mixed populations (tropical cyclones (TCs) and non-tropical cyclones (non-TCs)). The methodology and results are detailed in the paper "[A multivariate statistical framework for mixed storm types in compound flood analysis](https://egusphere.copernicus.org/preprints/2024/egusphere-2024-1122)."
 
 <br>
 
@@ -39,7 +39,7 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 
    
 
-### 3. 	Defining peak over threshold extreme events
+### 3. 	Defining peak-over-threshold extreme events
 - **`Scripts/Creating_POT_Extremes_NTR.m`**
 
 **Description**: The script uses the Peak over threshold (POT) approach to define events over thresholds for non-tidal residuals (NTR).
@@ -246,7 +246,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## References
 
-Refer to the associated paper for detailed context and methodologies: [A multivariate statistical framework for mixed populations in compound flood analysis](https://doi.org/10.5194/egusphere-2024-1122).
+Refer to the associated paper for detailed context and methodologies: [A multivariate statistical framework for mixed storm types in compound flood analysis](https://doi.org/10.5194/egusphere-2024-1122).
 
 
 
