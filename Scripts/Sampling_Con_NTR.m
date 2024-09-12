@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
 %   This script generates a sample of extreme events of NTR peak and RF peak combinations where NTR is
-%   over the selecetd threshold. 
+%   over the selected threshold. 
 %
 %   IMPORTANT:  The paths included in the script are according to the
 %   author's directory. Please change them accordingly
@@ -25,8 +25,8 @@ for j=1:48
     for i = 1:length(POT_NTR)
         Time_NTR = POT_NTR(i,1);
         [index_1] = find (Data(:,1)== Time_NTR);
-        [Max_RF, index_2] = max(Data(index_1-36:index_1+36,j+1)); % taking the 3 dday window
-        index_2 = index_2+index_1-35; % correcting the index to to find the row in 'Data'
+        [Max_RF, index_2] = max(Data(index_1-36:index_1+36,j+1)); % taking the 3 day window
+        index_2 = index_2+index_1-35; % correcting the index to find the row in 'Data'
     
 
         Maximum_RF_events(j).Accumulation(i).Time_NTR = Time_NTR;
