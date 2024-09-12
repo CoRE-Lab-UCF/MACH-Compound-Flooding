@@ -11,11 +11,11 @@
 clear
 clc
 
-% input data Please change the accordingly
+% input data: Please change accordingly
 Time_NTR_mod = datenum(1996,1,20,12,0,0); % change the date and the time when you want to plot cyclones
-Cir_1=350; % search radious of the circles
-Cir_2=0; % search radious of the circles
-Cir_3=1000; % search radious of the circles
+Cir_1=350; % search radius of the circles
+Cir_2=0; % search radius of the circles
+Cir_3=1000; % search radius of the circles
 T_before_event = 2; % Time window: before the event
 T_after_event = 1; % Time window: after the event
 Acc = 18; % Selected RF Accumulation time
@@ -23,7 +23,7 @@ Acc = 18; % Selected RF Accumulation time
 GC_LT=39.888749; % need to enter the corresponding coordinates of the center of the catchment
 GC_LN=-75.097364;
 
-%% Loadting Cyclone Tracl data
+%% Loading Cyclone Track data
 
 Data_GC_Con_NTR = load("%%Path%%/ET_events_conditioning_POT_NTR.mat");
 Data_AO  = load("ET_cyclone_tracls_from_1983","Data_AO_Complete");
@@ -45,8 +45,8 @@ count =0;
 
 
 
-    strt_hr = Time_NTR_mod-T_before_event; % Assuming a 3 day window please change it accordingly
-    end_hr = Time_NTR_mod+T_after_event+0.25; % Assuming a 3 day window and adjustment of 6hr resolution
+    strt_hr = Time_NTR_mod-T_before_event; % Assuming a 3-day window please change it accordingly
+    end_hr = Time_NTR_mod+T_after_event+0.25; % Assuming a 3-day window and adjustment of 6hr resolution
     
     index_all = find(Data_AO_Complete(:,2)>=strt_hr & Data_AO_Complete(:,2)<=end_hr); % Finding all the ET indices passing during 3 day period
     selected_data = Data_AO_Complete(index_all,:);
