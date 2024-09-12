@@ -25,7 +25,7 @@ events= struct;
 th = ones(1,48)*11; % initial Threshold values
 for ii = 1:48
     
-    POT=nan(10000,2); %This is a dummy vector just to recognize for the loop
+    POT=nan(10000,2); %This is a dummy vector only to recognize for the loop
     while length(POT) > 580 % Should be changed accordingly
         % events over threshold events
         EOT= ts(:,ii+1);
@@ -33,7 +33,7 @@ for ii = 1:48
         EOT= [ts(:,1) EOT];
         EOT(isnan(EOT(:,2)),:)= [];
         
-        % Plot the RF values over Threshold
+        % Plot the RF values over the Threshold
         
 
         %%%%%%%%%%%% Declustering %%%%%%%%%
@@ -66,7 +66,7 @@ for ii = 1:48
         POT(isnan(POT(:,2)),:)= [];
         
         
-        th(1,ii)=th(1,ii)+0.005; % the 0.005 was just a user defined value to go to the next threshold 
+        th(1,ii)=th(1,ii)+0.005; % the 0.005 was just a user-defined value to go to the next threshold 
         
     end
     events(ii).POT=POT;
