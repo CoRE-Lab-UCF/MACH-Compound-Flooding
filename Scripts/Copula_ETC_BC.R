@@ -302,7 +302,7 @@ Copula_ETC_BC<-function(Data, Data_Con1, Data_Con2,Data_Con1_M, Data_Con2_M, u1=
  ###################################################################################################### 
   
   
-  
+# The following part should be changed according to the selected marginal distributions (Here it is for Tweedie and Logostic dis.)   
   
   
   # Creating the parrametric space grid
