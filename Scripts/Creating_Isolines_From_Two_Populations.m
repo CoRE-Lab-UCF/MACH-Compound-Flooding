@@ -1,11 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
 %
-%   This Script combines the AEP from two popultions and plot them
+%   This Script combines the AEP from two populations and derive the joint probability isolines
 %   
 %   IMPORTANT:  The paths included in the script are according to the
 %   author's directory. Please change them accordingly
-%               The word "ETC" referes to non-TC events
+%               The word "ETC" refers to non-TC events
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -19,7 +19,7 @@ rp=[5 10 20 50 100]; % Array of RPs of interest
 % reading the RP array if TC population 
 TC = readtable("***Path***\RP_TC.csv");
 %
-% reading the RP array if Non-TC populatio
+% reading the RP array if Non-TC population
 ETC = readtable("***Path***\RP_ETC.csv");
 
 % Loading the POT extreme events
@@ -76,7 +76,7 @@ Zm2 = griddata(TC.Var1, TC.Var2, TC.V4, Xm, Ym);
 An_ex_con1 = 1./TC.V3;
 An_ex_con2 = 1./TC.V4;
 
-% Checking the maximum probability and plot them
+% Checking the maximum probability and plotting them
 for i=1:length(An_ex_con2)
     if An_ex_con1(i)>An_ex_con2(i)
         An_ex_comb(i)=An_ex_con1(i);
@@ -106,7 +106,7 @@ for i=1:length(rp)
     pr=prd/max(prd); % normalize the relative probability
     fig2=scatter(cord_con_comb_TC(i).X',cord_con_comb_TC(i).Y',[],pr,'filled');hold on;
 
-    % Plotting most lkely event
+    % Plotting most likely event
     [~,ind_MLI] = max(pr);
     MLE = scatter(cord_con_comb_TC(i).X(ind_MLI)',cord_con_comb_TC(i).Y(ind_MLI)','k','filled','^');hold on;
 
@@ -182,7 +182,7 @@ for i=1:length(rp)
     pr=prd/max(prd); % normalize the relative probability
     fig3=scatter(cord_con_comb_ETC(i).X',cord_con_comb_ETC(i).Y',[],pr,'filled');hold on;
 
-    % Plotting most lkely event
+    % Plotting most likely event
     [~,ind_MLI] = max(pr);
     MLE = scatter(cord_con_comb_ETC(i).X(ind_MLI)',cord_con_comb_ETC(i).Y(ind_MLI)','k','filled','^');hold on;
 
@@ -256,21 +256,10 @@ for i=1:length(rp)
 end
 
 %% Selecting a simulated sample from copulas
-
-% definnign the copula sample based on the number of events
-count_select_TC = round(length(TC_ext_CON_RF_yrs)/(length(TC_ext_CON_RF_yrs)+length(Non_TC_ext_CON_ntr_yrs))*length(table2array(COP_sample_TC))); % How many of events are selected from TC simulations
-count_select_ETC = length(table2array(COP_sample_TC))-count_select_TC; % How many of events are selected from ETC simulations
-
-TC_select_ind = randsample(length(table2array(COP_sample_TC)),count_select_TC); % select random N realizations from simulations where N=count_select_TC
-ETC_select_ind = randsample(length(table2array(COP_sample_TC)),count_select_ETC); % select random M realizations from simulations where M=count_select_TC
-
-cop_sample_select_TC = [COP_sample_TC.Var1(TC_select_ind) COP_sample_TC.Var2(TC_select_ind)];
-cop_sample_select_ETC = [COP_sample_ETC.Var1(ETC_select_ind) COP_sample_ETC.Var2(ETC_select_ind)];
-
 Cop_sample_Combined = [cop_sample_select_TC; cop_sample_select_ETC];
 
 
-%% Plotting using simulated KDE proportionate to the innitial threshold exceedences
+%% Plotting using simulated KDE proportionate to the initial threshold exceedances
 figure
 
 
@@ -281,7 +270,7 @@ for i=1:length(rp)
     pr=prd/max(prd); % normalize the relative probability
     fig4=scatter(cord_con_comb(i).X',cord_con_comb(i).Y',30,pr,'filled');hold on;
 
-    % Plotting most lkely event
+    % Plotting most likely event
     [~,ind_MLI] = max(pr);
     MLE = scatter(cord_con_comb(i).X(ind_MLI)',cord_con_comb(i).Y(ind_MLI)','k','filled','^');hold on;
 
