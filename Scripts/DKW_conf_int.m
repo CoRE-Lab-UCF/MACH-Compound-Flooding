@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
 %
-%   This function estimate the estimate and CI values for the given values in XI using sample data using Dvoretzky–Kiefer–Wolfowitz inequality
+%   This function estimates the estimate and CI values for the given values in XI using sample data using Dvoretzky–Kiefer–Wolfowitz inequality
 
 %   
 %               
@@ -9,9 +9,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%This estimates thhe CI values for the given values in XI using sample data using Dvoretzky–Kiefer–Wolfowitz inequality
+%This estimates the CI values for the given values in XI using sample data using Dvoretzky–Kiefer–Wolfowitz inequality
 
-% Important: data shound be [Sample-threshold]
+% Important: data should be [Sample-threshold]
 function[CI_U,CI_L,Xi]= DKW_conf_int(data,alpha)
     %sorting
     sort(data,'ascend');
