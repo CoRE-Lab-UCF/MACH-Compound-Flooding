@@ -1,7 +1,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
-%   This script stratifies the extreme events sample in to TC events and
+%   This script stratifies the extreme events sample into TC events and
 %   non-TC events when conditioning on RF
 %
 %   IMPORTANT:  The paths included in the script are according to the
