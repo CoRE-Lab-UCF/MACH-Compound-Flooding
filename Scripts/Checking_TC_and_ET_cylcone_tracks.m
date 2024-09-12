@@ -20,12 +20,12 @@ T_before_event = 2; % Time window: before the event
 T_after_event = 1; % Time window: after the event
 Acc = 18; % Selected RF Accumulation time
 % Co-ordinates of the center of search radius (basin)
-GC_LT=39.888749;
+GC_LT=39.888749; % need to enter the corresponding coordinates of the center of the catchment
 GC_LN=-75.097364;
 
 %% Loadting Cyclone Tracl data
 
-Data_GC_Con_NTR = load("C:\Users\pr109704\OneDrive - Knights - University of Central Florida\Analysis_DW_5d_TC_350km_Philli_airport_AORC_Chelsa_V1\Stratification\Conditioning_NTR\ET_events_conditioning_POT_NTR.mat");
+Data_GC_Con_NTR = load("%%Path%%/ET_events_conditioning_POT_NTR.mat");
 Data_AO  = load("ET_cyclone_tracls_from_1983","Data_AO_Complete");
 
 %% Checking for Conditioning NTR 18hr Accumulation %%%%%%%%%%%%%%%
@@ -69,7 +69,7 @@ count =0;
 hold on
 
 %%  Loading TC track data
-load("Cyclone_Track_data_from_1850.mat");
+load("%%path%%/Cyclone_Track_data_from_1850.mat");
 
 %% finding the corresponding tropical cyclone
 
