@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Author: Pravin
 %   This script generates a sample of extreme events of NTR peak and RF peak combinations where RF is
-%   over the selecetd threshold. 
+%   over the selected threshold. 
 %
 %   IMPORTANT:  The paths included in the script are according to the
 %   author's directory. Please change them accordingly
@@ -33,7 +33,7 @@ for i = 1:length(POT_RF)
     B=datevec(Time_RF); % Need to proceed to the datevec and again date num cz some issue
     Time_RF=datenum(B);
     [index_1] = find(Time_NTR(:,1)==Time_RF);
-    [Max_NTR, index] = max(NTR(index_1-36:index_1+36)); % taking the 3 dday window
+    [Max_NTR, index] = max(NTR(index_1-36:index_1+36)); % taking the 3 day window
     index = index+index_1-35; % need to correct the index since 'index' was from the selected vector
 
           
