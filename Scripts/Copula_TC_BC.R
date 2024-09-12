@@ -311,6 +311,7 @@ Copula_TC_BC<-function(Data, Data_Con1, Data_Con2, Data_Con1_M, Data_Con2_M, u1=
   
   
   # Creating the parrametric space grid
+  # The following part should be changed according to the selected marginal distributions (Here its for gamma and Logostic dis.)                                 
   NTR<- seq(-1,8,0.1)
   RF<- seq(0,300,2)
   Pgrid<-expand.grid(NTR,RF)
@@ -486,6 +487,7 @@ Copula_TC_BC<-function(Data, Data_Con1, Data_Con2, Data_Con1_M, Data_Con2_M, u1=
 
   
   ###########################################################################################################################
+  # The following part should be changed according to the selected marginal distributions (Here it is for gamma and Logostic dis.)     
   # Condiioned on var 1
   sample<-BiCopSim(round(N*nrow(Data_Con1)/(nrow(Data_Con1)+nrow(Data_Con2)),0),obj1)
   cop.sample1.con<-u2gpd(sample[,1], p = 1, th=Thres1 , sigma=exp(GPD_con1$coefficients[1]),xi= GPD_con1$coefficients[2])
