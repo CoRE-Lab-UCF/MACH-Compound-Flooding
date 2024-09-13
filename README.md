@@ -1,6 +1,6 @@
 # A multivariate statistical framework for mixed storm types in compound flood analysis
 
-This directory contains MATLAB and R scripts used for estimating the joint probabilities in coastal regions, focusing on the mixed populations (tropical cyclones (TCs) and non-tropical cyclones (non-TCs)). The methodology and results are detailed in the paper "[A multivariate statistical framework for mixed storm types in compound flood analysis](https://egusphere.copernicus.org/preprints/2024/egusphere-2024-1122)."
+This directory contains MATLAB and R scripts used for estimating the joint probabilities of occurring extreme storm surges and rainfall in coastal regions, focusing on the mixed populations (tropical cyclones (TCs) and non-tropical cyclones (non-TCs)). The methodology and results are detailed in the paper "A multivariate statistical framework for mixed storm types in compound flood analysis."
 
 <br>
 
