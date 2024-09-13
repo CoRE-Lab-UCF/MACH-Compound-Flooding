@@ -10,6 +10,7 @@
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% When calculating the threshold for the modeled data set matching the number of Dry hours with the measured data set, the hours with trace precipitation may needed to be accounted. 
 
 clear
 close all
@@ -27,7 +28,7 @@ Time_AORC=AORC.prcpdata(:,1);
 
 
 %% Creating the date vector
-t1 = datetime(1979,02,01,00,00,00,'Format','yyyy MM dd HH mm'); %%insert the starting date manually / NOTE THAT IT STATRTS WITH 02ND OF JAN
+t1 = datetime(1979,02,01,00,00,00,'Format','yyyy MM dd HH mm'); %% insert the starting date manually / NOTE THAT AORC STATRTS WITH 02ND OF JAN
 t2 = datetime(2021,12,31,23,00,00,'Format','yyyy MM dd HH mm'); %% Enter the end date manually
  
 t=t1:hours(1):t2; %create the time series
@@ -47,7 +48,7 @@ Threshold = AORC_Sorted (index2);
 %% Creating very Small rainfall in to dry hours 
 
 MOD_PR_AORC = Pr_AORC;
-MOD_PR_AORC(MOD_PR_AORC < Threshold)= 0; %Make all the lower threshould values zero and this should be taken finally
+MOD_PR_AORC(MOD_PR_AORC < Threshold)= 0; % Make all the values below the threshold, zero before fitting the distribution
 
 %% fitting to a gamma Distribution
 C=[];
