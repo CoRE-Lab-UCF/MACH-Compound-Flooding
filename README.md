@@ -15,7 +15,7 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 
 ## Getting Started
 
-1. **MATLAB Installation**: Ensure MATLAB is installed and set up on your system.
+1. **MATLAB and R Installation**: Ensure MATLAB and R are installed and set up on your system.
 2. **Data Preparation**: Download the required datasets as specified in the associated paper.
 3. **Script Execution**: Open MATLAB and run each script as needed. Modify input parameters based on your specific data and analysis requirements.
 
@@ -23,7 +23,7 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 ### 1. Bias Correction
 - **`Bias_Correction.m`**
 
-**Description**: This script applies a bias correction to the rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average rainfall values derived from the Analysis of Record for Calibration (AORC) data.-
+**Description**: This script applies a bias correction to the rainfall data using quantile mapping. The method adjusts the hourly rainfall gauge data to match the basin-average rainfall values derived from the Analysis of Record for Calibration (AORC) data. This correction was applied since the rain gauge location is outside the catchment area and here we are interested in "basin average rainfall".
 
 **Input**:
 - `Pr_Measured.mat`:- [date-time, hourly precipitation]
