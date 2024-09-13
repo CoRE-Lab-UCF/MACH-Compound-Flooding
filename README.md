@@ -17,7 +17,7 @@ This directory contains MATLAB and R scripts used for estimating the joint proba
 
 1. **MATLAB and R Installation**: Ensure MATLAB and R are installed and set up on your system.
 2. **Data Preparation**: Download the required datasets as specified in the associated paper.
-3. **Script Execution**: Open MATLAB and run each script as needed. Modify input parameters based on your specific data and analysis requirements.
+3. **Script Execution**: Open MATLAB and run each script as needed. Modify the input parameters based on your specific data and analysis requirements.
 
 
 ### 1. Bias Correction
