@@ -224,20 +224,20 @@ For non-Tropical Cyclone events:
 
 The following variables are only relevant for plotting.
 - `c_map` : [ linspace(0.8,1,512)', linspace(0,0.9,512)', linspace(0,0.2,512)']; % Colour Map
-- `F_Size` :15; % font size of the figures
-- `Con_NTR_LW` : 1; % Lower limit of the NTR axis
-- `Con_NTR_M_Size` : 6; % maximum of the NTR axis
-- `Con_RF_LW` : 1;% Lowe limit of the RF axis
-- `Con_RF_M_Size` : 4;% maximum of the RF axis
-- `width` : 20; % width of figures
-- `height` : 20; % height of figures
-- `resolution` : 1000; % Number of grid cells in each direction of discretizing
+- `F_Size`: font size of the figures
+- `Con_NTR_LW`:Lower limit of the NTR axis
+- `Con_NTR_M_Size`: maximum of the NTR axis
+- `Con_RF_LW`: Lowe limit of the RF axis
+- `Con_RF_M_Size`: maximum of the RF axis
+- `width`: width of figures
+- `height`: height of figures
+- `resolution`: Number of grid cells in each direction of discretizing
 - `x0`:0.2;
 - `y0`:0.2;
-- `x_U_lim` : 8; % limits of discretizing
-- `x_L_lim` : -1.2; % limits of discretizing
-- `Y_U_ilm` : 300;% limits of discretizing
-- `Y_L_lim`: 0;% limits of discretizing
+- `x_U_lim`: upper x limit of discretizing
+- `x_L_lim`: lower x limit of discretizing
+- `Y_U_ilm` : upper y limit of discretizing
+- `Y_L_lim`: lower y limit of discretizing
 
 
 ## License
