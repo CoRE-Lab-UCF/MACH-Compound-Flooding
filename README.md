@@ -284,7 +284,7 @@ The following variables are only relevant for plotting.
 ### 13. Combining scaled NTR time series with MSL and Tides
 - **`Comb_NTR_MSL_TIDE.m`**
 
-**Description**: This function combined the scaled NTR time series with Tidal signal segments and MSL values 
+**Description**: This function combines the scaled NTR time series with Tidal signal segments and MSL values 
 
 
 ### 14. Sampling a RF time series
