@@ -30,7 +30,8 @@ Section 2: MATLAB scripts used for generating time series of boundary conditions
 3. **Script Execution**: Open MATLAB and run each script as needed. Modify the input parameters based on your specific data and analysis requirements.
 
 
-### Section 1
+#### Section 1
+
 ### 1. Bias Correction
 - **`Bias_Correction.m`**
 
@@ -251,7 +252,8 @@ The following variables are only relevant for plotting.
 - `Y_L_lim`: lower y limit of discretizing
 
 
-### Section 2
+#### Section 2
+
 ### 10. The main program for scaling observed rainfall and NTR time series to the target values 
 - **`Generating_Synthetic_events_mainF.m`**
 
