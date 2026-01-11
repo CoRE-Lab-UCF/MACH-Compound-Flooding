@@ -1,55 +1,54 @@
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Author: Pravin
+% Author: Pravin
 %
-%   
-%   IMPORTANT: The paths included in the script are according to the
-%   author's directory. Please change them accordingly
+% IMPORTANT: The paths included in the script are according to the
+% author’s directory. Please change them accordingly.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This function creates a probability distribution based on the inverse
+% distance between the target NTR and observed NTR peaks.
 
-% Creating a prbability distribution based on the inverse distance of two
-% points
-
-% Des_NTR = Target NTR value derived from fitted copulas
-% Peak_NTR = Peak NTR values of all the extracted NTR events [Date Value]
-% RF_Lag_time = RF lag times of all the extracted NTR events [RF lag time]
-% N = Howmany events to be sampled
-% Power =  The power of the inverse distance, [1] used
-% lag_thres = The threshold for lag times to identify independent events in
-% hours, [36] used
-% NTR_select = Selected NTR event [Peak index]
+% Des_NTR     = Target NTR value derived from fitted copulas
+% Peak_NTR    = Peak NTR values of all extracted NTR events [Date Value]
+% RF_Lag_time = RF lag times of all extracted NTR events [hours]
+% N           = Number of events to be sampled
+% Power       = Power used for the inverse distance (typically 1)
+% lag_thres   = Lag-time threshold to identify independent events [hours] (here 36)
+% NTR_select  = Selected NTR event [Peak value, Peak index]
 
 function [NTR_select]=Samp_NTR_curves(Des_NTR,Peak_NTR,RF_Lag_time, N,Power,lag_thres)
     
-    RF_Lag_time(RF_Lag_time>lag_thres,:)=NaN; % Making all exrteme lag times NaNs
-    RF_Lag_time(RF_Lag_time<lag_thres*(-1),:)=NaN; % Making all exrteme lag times NaNs
+    % Filter extreme lag times (outside ±lag_thres)
+    RF_Lag_time(RF_Lag_time>lag_thres,:)=NaN; % Set extreme positive lag times to NaN
+    RF_Lag_time(RF_Lag_time<lag_thres*(-1),:)=NaN; % Set extreme negative lag times to NaN
 
-    if Des_NTR>=0 % for positive des NTR values
+    % Compute inverse-distance weights (closer peaks get higher probability)
+    if Des_NTR>=0 % For positive target NTR values
         dis = abs(Des_NTR-Peak_NTR).^Power;
         inv_dis = 1./dis;
-    else % fro negative des_NTR values
+    else % For negative target NTR values
         dis = abs(Peak_NTR+Des_NTR).^Power;
         inv_dis = 1./dis;
     end
 
+    % Build sampling weights (normalized by the maximum weight)
     Probs_NTR=[Peak_NTR (inv_dis./max(inv_dis))];
     
-    
-    lag_sel = NaN; % To run the while loop
-    if Des_NTR > 0 % For compound events use only the compound observations
-        while isnan(lag_sel) % The selected lag should be greater than 36 hours to run the loop
-            NTR_sel=-10; % a dummy value to run the while loop (Should be less than the minimum des_NTR )
-            while NTR_sel*4 < Des_NTR % Allow only 5 times of scaling
+    % Sample an event subject to scaling and lag constraints
+    lag_sel = NaN; % Initialize to run the while loop
+    if Des_NTR > 0 % For compound events, use only compound observations
+        while isnan(lag_sel) % Keep sampling until a valid lag is selected
+            NTR_sel=-10; % Dummy value to run the while loop (must be lower than min Des_NTR)
+            while NTR_sel*4 < Des_NTR % Allow up to 4× scaling
                 NTR_sel = randsample(Peak_NTR,N,true,Probs_NTR(:,2));
             end
             ind = find(Peak_NTR == NTR_sel);
             NTR_select = [NTR_sel ind(1,1)];
             lag_sel = RF_Lag_time(ind);
         end
-    else    % For Independend events Use any of the observation
-        NTR_sel=-10; % a dummy value to run the while loop (Should be less than the minimum des_NTR )
-        while NTR_sel*4 < Des_NTR % Allow only 5 times of scaling
+    else    % For independent events, allow any observation
+        NTR_sel=-10; % Dummy value to run the while loop (must be lower than min Des_NTR)
+        while NTR_sel*4 < Des_NTR % Allow up to 4× scaling
             NTR_sel = randsample(Peak_NTR,N,true,Probs_NTR(:,2));
         end
         ind = find(Peak_NTR == NTR_sel);

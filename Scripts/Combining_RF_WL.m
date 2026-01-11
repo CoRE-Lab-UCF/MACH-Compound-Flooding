@@ -1,22 +1,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Author: Pravin
+% Author: Pravin
 %
-%   
-%   IMPORTANT: The paths included in the script are according to the
-%   author's directory. Please change them accordingly
-
+% IMPORTANT: The paths included in the script are according to the
+% author's directory. Please change them accordingly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% This function combines the scaled rainfall field and storm-tide hydrograph
+% into one compound storm event, using a selected lag time between RF and WL.
 
-
-% Storm_Tide_hydrograph = The vector os Storm Tide hydrographs
-% RF_fields = 3D vector with selected RF events
-% Dess_NTR = Target NTR values simulated from fitted copulas
-% Dess_RF = Target RF values simulated from fitted copulas (for the selected
-% Accumulations time)
-% Des_RF_Acc = Design_RF_Accumulation
-% Run = Structure array with the synthetc rainfall field and still walter
-% level time series
+% Dess_NTR             = Target NTR value simulated from fitted copulas
+% Dess_RF              = Target RF value simulated from fitted copulas
+% RF_Scaled            = Scaled RF structure (from Scaling_RF_events)
+% Storm_Tide_hydrograph = Storm-tide hydrograph structure (from Comb_NTR_MSL_TIDE)
+% Run                  = Structure containing the synthetic RF field and WL time series
 
 function [Run]=Combining_RF_WL(Dess_NTR,Dess_RF,RF_Scaled,Storm_Tide_hydrograph)
 
@@ -26,9 +22,7 @@ RF_lag = RF_Scaled.Original_RF_peak_lag;
 STH = Storm_Tide_hydrograph.Storm_Tide_HG;
 RF = RF_Scaled.Scaled_RF_field;
 
-
-
-% finding the peak indices
+% Find peak indices (scaled NTR and basin-average RF)
 [~,NTR_pk_ind] = max(Storm_Tide_hydrograph.Scaled_NTR);
 [~,RF_pk_ind] = max(RF_Scaled.BA_Scaled_RF_Field_sec);
 
@@ -55,36 +49,31 @@ RF = RF_Scaled.Scaled_RF_field;
 
 % Option 2
 % Selecting a random lag time out of two
-lagss = 1:1:11; % A vector of possible leg times before the high tide
-if Dess_NTR > 0 && Dess_RF >0 % Compound events
+lagss = 1:1:11; % A vector of possible lag times before the high tide
+if Dess_NTR > 0 && Dess_RF > 0 % Compound events
     LG = [NTR_lag RF_lag];
     lag = randsample(LG,1);
-   
 else
     lag = randsample(lagss,1);
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-% check whether the lag times within the thresholds
-
-% We add the lag time to RF time series    
+% Add the lag time to RF time series (pad RF to align the peak location)
 Z = zeros(size(RF,1),size(RF,2),((length(STH)+1)/2)-lag-RF_pk_ind);
+RF = cat(3,Z,RF);
 
-RF=cat(3,Z,RF);
-
-if Dess_NTR >0
-    Run.WL=STH;
+% Water level forcing (storm tide for compound events, tide+MSL for non-compound)
+if Dess_NTR > 0
+    Run.WL = STH;
 else
-    Run.WL=Storm_Tide_hydrograph.Five_day_Tide+Storm_Tide_hydrograph.MSL;
+    Run.WL = Storm_Tide_hydrograph.Five_day_Tide + Storm_Tide_hydrograph.MSL;
 end
 
-Run.RF=RF;
-Run.Des_RF=RF_Scaled.Design_RF;
-Run.Des_NTR=Storm_Tide_hydrograph.Design_NTR;
+% Save outputs
+Run.RF = RF;
+Run.Des_RF = RF_Scaled.Design_RF;
+Run.Des_NTR = Storm_Tide_hydrograph.Design_NTR;
 Run.lag_time = lag;
 
 end
-

@@ -1,22 +1,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Author: Pravin
+% Author: Pravin
 %
-%   
-%   IMPORTANT: The paths included in the script are according to the
-%   author's directory. Please change them accordingly
-
+% IMPORTANT: The paths included in the script are according to the
+% author's directory. Please change them accordingly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Scales the selected NTR time series up to the desired targed vaulue
+% This function scales the selected NTR time series to match the desired
+% target value.
 
-% points
-% Des_NTR = Traget NTR value [Value]
-% NTR = NTR_time series [Time NTR]
-% NTR_Data = The structure file with NTR data
-% NTR_select = Selected NTR [value Index]
-% NTR_thres = The NTR threshold used for identifying POT events
-% Design_NTR_time_series = An structure array with the information of the
-% saceled and observed event
+% Inputs
+% Des_NTR     = Target NTR value [value]
+% NTR         = NTR time series [Time, NTR]
+% NTR_Data    = Structure (or table) containing NTR event metadata
+% NTR_select  = Selected NTR event(s) [value, index]
+% NTR_thres   = NTR threshold used to identify POT event duration
+
+% Output
+% Design_NTR_time_series = Structure array containing the scaled and original event information
 
 function [Design_NTR_time_series]=Scaling_NTR_curves_M_2(Des_NTR,NTR,NTR_Data,NTR_select,NTR_thres)
 
@@ -43,21 +43,19 @@ function [Design_NTR_time_series]=Scaling_NTR_curves_M_2(Des_NTR,NTR,NTR_Data,NT
         NTR_Sec = NTR(Strt:ending,2);
         Time_Sec = NTR(Strt:ending,1);
 
-        %%%%%%% Finding the duration of the NTR event to match the rising Scaled %
-        % NTR event (Only use the rising section Ratio)
-       
-        Scale_fac = Des_NTR/NTR_select(i,1); % calculating the scaling factor
+        % Scale the event to match the target peak NTR
+        Scale_fac = Des_NTR/NTR_select(i,1); % Calculate the scaling factor
 
-        % Scaling the time series
+        % Scale the time series
         Scaled_NTR = NTR_Sec.*Scale_fac;
         
 
-        % Saving to the data file
-      
+        % Save scaled and original series
         Design_NTR_time_series(i).Scaled_NTR = Scaled_NTR;
         Design_NTR_time_series(i).Original_NTR = NTR_Sec;
         Design_NTR_time_series(i).Scaling_factor = Scale_fac;
 
+        % Compute scaled rising and falling durations using NTR_thres
         [~,time_NTR_ind] = max(Scaled_NTR);
         
         eta_bf=Scaled_NTR(time_NTR_ind);
