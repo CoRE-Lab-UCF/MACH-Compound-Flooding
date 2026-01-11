@@ -260,37 +260,92 @@ The following variables are only relevant for plotting.
 **Description**: The script is the main program for scaling observed rainfall and NTR time series to the target values. It executes the subsequent functions described below
     
 **Input**: 
+These include the data of extracted historical evets [Peak_Time Peak Duration Intensity Rising_Duration Falling_Duration Start_Ind Ending_Ind Tidal_Lag_time Zero_St_Ind Zero_end_Ind RF_Peak_Lag_Time]
 - `ETC_NTR_event_data.mat`
 - `TC_NTR_event_data.mat`
 - `ETC_RF_event_data.mat`
 - `TC_RF_event_data.mat`
 
 **output**:  
-- `Generated_Events.mat`:- Structure file containing 
+- `Generated_Events.mat`:- Structure file containing all the synthetic storm events
 
 
 ### 11. Sampling NTR time series 
 - **`Samp_NTR_curves.m`**
 
-**Description**: This function samples a given number of observed NTR events from a predefined sample
+**Description**: This function samples a given number of observed NTR events from a predefined sample. It creates a probability distribution (PD) based on the inverse distance between the target peak NTR and observed peak NTR and then sample observed events based on the PD.
+
+**Input**:
+- `Des_NTR`: Target NTR value derived from fitted copulas
+- `Peak_NTR`: Peak NTR values of all extracted NTR events [Date Value]
+- `RF_Lag_time`:RF lag times of all extracted NTR events [hours]
+- `N`: Number of events to be sampled
+- `Power`: Power used for the inverse distance (typically 1)
+- `lag_thres`: Lag-time threshold to identify independent events [hours] (typically 36)
+- `NTR_select: Selected NTR event [Peak value, Peak index]
+
+**output**:  
+- `NTR_select.mat`: Selected NTR event [Peak value, Peak index]
 
 
 ### 12. Scaling the NTR time series 
 - **`Scaling_NTR_curves_M_2.m`**
 
-**Description**: This function scales the selected NTR time series to match the target NTR values
+**Description**: This function scales the selected NTR time series to match the target NTR peak
+**Input**:
+- `Des_NTR`: Target NTR value [value]
+- `NTR`: NTR time series [Time, NTR]
+- `NTR_Data`: Structure (or table) containing NTR event metadata
+- `NTR_select`: Selected NTR event(s) [value, index]
+- `NTR_thres`: NTR threshold used to identify POT event duration
+
+**output**:  
+- `Design_NTR_time_series`: Structure array containing the scaled and original event information
+
 
 
 ### 13. Combining scaled NTR time series with MSL and Tides
 - **`Comb_NTR_MSL_TIDE.m`**
 
 **Description**: This function combines the scaled NTR time series with Tidal signal segments and MSL values 
+**Input**:
+- `RP_Comb`: Combined return period of the event  
+- `event_no`: Event number in the simulated sample  
+- `len_TC_sim`: Number of TC simulations from copulas  
+- `len_non_TC_sim`: Number of non-TC simulations from copulas  
+- `NTR_scaled`: Scaled NTR data structure from the previous function  
+- `Monthly_Tidal_curves`: Tidal signal segments around each high tide, separated by month  
+- `MSL`: MSL distribution separated by calendar month  
+- `TC_monthly_dis`: Monthly occurrence distribution of TCs  
+- `ETC_monthly_dis`: Monthly occurrence distribution of non-TCs  
+
+**Output**:  
+- `Storm_Tide_hydrograph`: Structure containing the storm-tide hydrograph and related parameters
 
 
-### 14. Sampling a RF time series
+### 14. Sampling a rainfall time series
 - **`Samp_RF_events.m`**
 
-**Description**: This function samples a given number of observed RF events from a predefined sample
+**Description**: This function samples a given number of observed RF events from a predefined sample. It creates a probability distribution (PD) based on the inverse distance between the target peak rainfall and observed peak rainfall and then sample observed events based on the PD.
+
+**Input**:
+- `Des_RF`: Target RF value derived from fitted copulas  
+- `RF_Data`: Structure (or table) containing RF event metadata (must include `Peak_18_hr_RF`)  
+- `RF_Lag_time`: Lag times between RF peak and NTR peak for each observed RF event [hours]  
+- `N`: Number of events to be sampled (here, 1)
+- `Power`: Power used for the inverse-distance metric  
+- `lag_thres`: Maximum allowable lag time between RF peak and NTR peak [hours]  
+
+**Output**:  
+- `RF_select`: Selected RF event `[RF_peak_value, event_index]`
+
+
+
+
+
+
+
+
 
 
 ### 15.  Scaling RF time series  
@@ -298,11 +353,29 @@ The following variables are only relevant for plotting.
 
 **Description**: This function scales the selected RF time series to match the target RF values
 
+**Input**:
+- `RF_Acc`: Accumulation window (hours) used for moving-sum calculations  
+- `DES_RF`: Target RF value derived from fitted copulas  
+- `RF_Data`: Structure (or table) containing RF event metadata  
+- `RF_fields`: Rainfall field data (x, y, time)  
+- `RF_select`: Selected RF event `[RF_peak_value, event_index]`  
+
+**Output**:  
+- `RF_Scaled`: Structure containing the scaled RF fields, basin-average series, and event metadata
+
 
 ### 16. Combining the storm tide hydrograph and Rf fields 
 - **`Combining_RF_WL.m`**
 
-**Description**: This function combines the storm tide hydrograph time series and scaled RF fields to create a fully synthetic compound event
+**Description**: This function combines the scaled rainfall field and storm-tide hydrograph into one compound storm event, using a selected lag time between RF and WL.
+**Input**:
+- `Dess_NTR`: Target NTR value simulated from fitted copulas  
+- `Dess_RF`: Target RF value simulated from fitted copulas  
+- `RF_Scaled`: Scaled RF structure (from `Scaling_RF_events`)  
+- `Storm_Tide_hydrograph`: Storm-tide hydrograph structure (from `Comb_NTR_MSL_TIDE`)  
+
+**Output**:  
+- `Run`: Structure containing the synthetic rainfall field, water level time series, and other information for numerical model simulations
 
 
 
