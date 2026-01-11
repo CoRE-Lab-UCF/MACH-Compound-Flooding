@@ -14,6 +14,8 @@ Section 1: MATLAB and R scripts used for estimating the joint probabilities of o
 
 Section 2: MATLAB scripts used for generating time series of boundary conditions based no the simulated peaks described in the section. The methodology and results are detailed in the paper "Generating Boundary Conditions for Compound Flood Modeling in a Probabilistic Framework".
 
+>Maduwantha, P., Wahl, T., Santamaria-Aguilar, S., Jane, R., Dangendorf, S., Kim, H., and Villarini, G.: Generating Boundary Conditions for Compound Flood Modeling in a Probabilistic Framework, EGUsphere [preprint], https://doi.org/10.5194/egusphere-2025-1557, 2025.
+
 <br>
 
 
@@ -250,6 +252,9 @@ The following variables are only relevant for plotting.
 - `x_L_lim`: lower x limit of discretizing
 - `Y_U_ilm`: upper y limit of discretizing
 - `Y_L_lim`: lower y limit of discretizing
+
+
+
 
 
 ## Section 2
