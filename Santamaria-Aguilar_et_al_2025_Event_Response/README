@@ -1,0 +1,26 @@
+The Flood Hazard Modeling using SFINCS model
+In this section, we describe how to perfom the flood hazard analysis used in the paper "Large discrepancies between event- and response-based compound flood hazard estimates" using the rainfall and water levels derived in the previous section. We used the SFINCS flood model, which is an open access and open source flood model developed by Deltares and can be found (10.5281/zenodo.8038534, https://github.com/Deltares/SFINCS). The datasets required to reproduce the flood hazard modeling can be downloaded Data_Flood_Modeling (10.5281/zenodo.14251861), SFINCS files (10.5281/zenodo.14251308) and the output from the Statistical Framework generated from the previous section.
+
+1. SFINCS Set Up
+Documentation about the SFINCS model and how to set it up can be found (https://sfincs.readthedocs.io/en/latest/index.html). Information about the raw input data used to set up SFINCS and the sources of the data can be found in the Supporting Material of the paper LINK TO SUP MAT We used ArcGIS pro to preprocess the DEM (clip to catchments domain), the Delft Dashboard (Van Ormondt et al. 2020 https://doi.org/10.2166/hydro.2020.092), and the Open Earth Tools (https://svn.oss.deltares.nl/repos/openearthtools/trunk/matlab/applications/sfincs/) to generate some of the input files of SFINCS (DEM, Subgrid tables, and msk file). To generate the Roughness file, we converted the land cover classes to Manning coefficients using the "Mean" value of the conversion table "Unique_Land_Classes_CN.xls" in the Data_Flood_Modeling. The input model files of SFINCS for Gloucester City (NJ, US) used in this study can be downloaded from (https://doi.org/10.5281/zenodo.14251309).
+
+2. Boundary Conditions and Rainfall Forcing
+As explain in the methodlogy of "Funding rules that promote equity in climate adaptation outcomes.", we simulated flooding from different return period events of extreme water levels and rainfall independtly. The boudary files of water levels and rainfall fields for SFINCS from the events derived from the Statistical Framework can be generated using the Matlab script "SFINCS_BC_generator.m" and the function "sfincs_write_netcdf_amprfile.m" from the Open Earth Tools (https://svn.oss.deltares.nl/repos/openearthtools/trunk/matlab/applications/sfincs/).
+Input:
+Output:
+
+3. Model File & Running SFINCS
+In "Data_Flood_modeling" can be found one of the model files ("sfincs.inp") used for one of the SFINCS simulations. This file can be open with any text editor and contains all the information about the configuration of SFINCS used for this study. In order to run the different events, the fields "bzsfile" and "netamprfile" need to be modified accordingly with the name given to the water levels boudary file and rainfall field files generated from the previous section.
+For this study, we used the Version 2.0.0 Alpe D'Huez Release 2022 (10.5281/zenodo.8038534) of SFINCS.
+
+4. Downscaling floodplains to subgrid resolution
+For this study, SFINCS is configurated to run using the subgrid approach and thus the outputs of the simulations ("sfincs_map.nc") can be downscaled to 1m resolution. For that, we use the Matlab script "SUBGRID_Downscale.m" in "Script_Flood" that was written with help of Marteen Van Ormondt. That script requires the DEM ("dem_subgrid_1m_nbd.mat" in "Data_Flood_Modeling") and a number of Matlab functions from the Open Earth Tools (https://svn.oss.deltares.nl/repos/openearthtools/trunk/matlab/applications/sfincs/ and https://svn.oss.deltares.nl/repos/openearthtools/trunk/matlab/io/netcdf/snctools/). The output of this code is the maximum water depths from the simulation at 1m resolution ("'Max_WD_.mat'")
+
+Input:
+sfincs_map.nc
+dem_subgrid_1m_nbd.mat
+sfincs.inp
+Output:
+'Max_WD_.mat'
+
+List of Functions Required from Open Earth Tools: "deblank2.m", "downscale_zs.m", "mc_bute.m", "nc_char.m", "nc_double.m", "nc_float.m", "nc_getattsinfo_tmw.m", "nc_int.m", "nc_int64.m", "nc_nat.m", "nc_short.m", "nc_ubyte.m", "nc_unit.m", "nc_unit64.m", "nc_ushort.m", "nc_varget.m", "nc_varget_tmw.m", "nc_vargetr.m", "sfincs_get_values_for_dem.m", "sfincs_make_grid.m", sfincs_read_indices_for_dem.m", "sfincs_read_input.m", "snc_format.m", "snc_get_indexing.m", "snc_read_backend.m"
